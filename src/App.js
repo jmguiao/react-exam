@@ -31,7 +31,7 @@ export class App extends Component {
         transTab: 0,
         data: null,
         dataBySearch: null,
-        skipBy: 0
+        skipBy: 18
 
       
  
@@ -81,10 +81,10 @@ handleScroll = (e) => {
 
   if (bottom){
 console.log("on scroll bottom");
+const sk = this.state.skipBy
 
-
-      //  RecW.getRData(setSkipBy,this.state.showTrans);
-      //  this.setState({skipBy:setSkipBy})
+     
+        this.setState({skipBy:sk+18})
 
 
  
@@ -126,25 +126,12 @@ this.onSearchFunc(input)
   fetch('https://api.spacexdata.com/v3/launches')
   .then(response => response.json())
   .then(data => this.setState({data: data}) );
-  window.onscroll=function(){
-  // const sidebar = document.getElementById('transList');
-  // const e = document.getElementById('transList');
 
-
-  //need to log on sroll bottom 
-    // console.log(e.scrollHeight);
-    // console.log(e.scrollTop);
-    // console.log(e.clientHeight);
-    // const bottom  = e.scrollHeight - e.scrollTop === e.clientHeight
-      // const bottom = Math.round(e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight;
-      // console.log(bottom);
-     
- }
 
  
 }
   render() {
-    let { dataBySearch, data} = this.state;
+    let { skipBy,dataBySearch, data} = this.state;
     const style = {
       width: '1000px',
       height: '500px',
@@ -198,7 +185,7 @@ this.onSearchFunc(input)
                                           
                                           <div 
                                            key={key}>
-                                                    {key <= 18 &&
+                                                    {key <= skipBy &&
                                                           <div key={key} >
                       
                                                           <h1>{data.mission_name}</h1>
