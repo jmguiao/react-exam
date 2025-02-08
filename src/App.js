@@ -69,26 +69,26 @@ handleScroll = (e) => {
        
   console.log("on scrol");
   
-  // const bottom = Math.round(e.target.scrollHeight - e.target.scrollTop) == e.target.clientHeight;
+  const bottom = Math.round(e.target.scrollHeight - e.target.scrollTop) == e.target.clientHeight;
 // alert(e.target.scrollHeight)
  
   // let setSkipBy = this.state.skipBy
   // setSkipBy++
 
-// console.log(bottom);
+ console.log(bottom);
 
 
 
-//   if (bottom){
-// console.log("on scroll bottom");
+  if (bottom){
+console.log("on scroll bottom");
 
 
-//       //  RecW.getRData(setSkipBy,this.state.showTrans);
-//       //  this.setState({skipBy:setSkipBy})
+      //  RecW.getRData(setSkipBy,this.state.showTrans);
+      //  this.setState({skipBy:setSkipBy})
 
 
  
-//   }
+  }
 }
 
   onSearch(event) {
