@@ -128,13 +128,13 @@ this.onSearchFunc(input)
   .then(data => this.setState({data: data}) );
   window.onscroll=function(){
   // const sidebar = document.getElementById('transList');
-  const e = document.getElementById('transList');
+  // const e = document.getElementById('transList');
 
 
   //need to log on sroll bottom 
-    console.log(e.scrollHeight);
-    console.log(e.scrollTop);
-    console.log(e.clientHeight);
+    // console.log(e.scrollHeight);
+    // console.log(e.scrollTop);
+    // console.log(e.clientHeight);
     // const bottom  = e.scrollHeight - e.scrollTop === e.clientHeight
       // const bottom = Math.round(e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight;
       // console.log(bottom);
@@ -145,7 +145,11 @@ this.onSearchFunc(input)
 }
   render() {
     let { dataBySearch, data} = this.state;
-
+    const style = {
+      width: '1000px',
+      height: '500px',
+      overflowY: 'auto'
+    }
     // console.log(data);
     
     return (
@@ -185,9 +189,10 @@ this.onSearchFunc(input)
               {/* lazy loading */}
 
               <div id='transList'
-                                  style={{background: "red", "margin-bottom": "100px"}}
+              style={style}
+                                  // style={{background: "red", "margin-bottom": "100px"}}
 
-                                          onScrollCapture={()=>alert("scroll")}>
+                                          onScroll={this.handleScroll}>
               {data
                                         ? data.map((data, key) => (
                                           
