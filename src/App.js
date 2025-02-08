@@ -40,6 +40,7 @@ export class App extends Component {
 
 
 
+
   }
 
   onSearchFunc(input){
@@ -59,23 +60,35 @@ export class App extends Component {
         this.setState({dataBySearch:data})
         
     
-      //    if(data.length == 0){
-      //        data =  prodData.filter((prod)=>{
-      //           prod= prod.code
-          
-                
-      //             return prod.indexOf(keyword) > -1; 
-                
-      //       })
-      //    }
-
-         
-      //    const reversed = data.reverse();
-      //  console.log(data);
-       
-      //    return reversed;
+    
      
     
+}
+
+handleScroll = (e) => {
+       
+  console.log("on scrol");
+  
+  // const bottom = Math.round(e.target.scrollHeight - e.target.scrollTop) == e.target.clientHeight;
+// alert(e.target.scrollHeight)
+ 
+  // let setSkipBy = this.state.skipBy
+  // setSkipBy++
+
+// console.log(bottom);
+
+
+
+//   if (bottom){
+// console.log("on scroll bottom");
+
+
+//       //  RecW.getRData(setSkipBy,this.state.showTrans);
+//       //  this.setState({skipBy:setSkipBy})
+
+
+ 
+//   }
 }
 
   onSearch(event) {
@@ -89,12 +102,46 @@ this.onSearchFunc(input)
     // this.setState({activeDDown: "ALL CATEGORIES",dataBySearch: getSearch})
   }
 
+  getRData =async(setSkipBy,showTrans)=>{
+
+    // const rData = async()=>{
+    //     const userId = localStorage.getItem("Meteor.userId");
+
+
+    //     return new Promise((resolve, reject) => {
+    //         this.callFunction("getReceiptData", userId,setSkipBy*10, showTrans,(err, res)=> {
+    //             if (err) {
+                   
+    //                 reject("Something went wrong");
+    //             }
+    //             resolve(res);
+                
+
+
+    //         });
+    //     });
+    };
 
   componentDidMount() {
   fetch('https://api.spacexdata.com/v3/launches')
   .then(response => response.json())
   .then(data => this.setState({data: data}) );
-  
+  window.onscroll=function(){
+  // const sidebar = document.getElementById('transList');
+  const e = document.getElementById('transList');
+
+
+  //need to log on sroll bottom 
+    console.log(e.scrollHeight);
+    console.log(e.scrollTop);
+    console.log(e.clientHeight);
+    // const bottom  = e.scrollHeight - e.scrollTop === e.clientHeight
+      // const bottom = Math.round(e.target.scrollHeight - e.target.scrollTop) === e.target.clientHeight;
+      // console.log(bottom);
+     
+ }
+
+ 
 }
   render() {
     let { dataBySearch, data} = this.state;
@@ -103,7 +150,14 @@ this.onSearchFunc(input)
     
     return (
       
-      <div>
+      <div    
+      // style={{background: "red",height: "100"}}
+      
+      
+      >
+   
+            
+      
               <div>search by mission name</div>
               <input
                   autoFocus
@@ -126,6 +180,38 @@ this.onSearchFunc(input)
                 
                 
               )) : null}
+
+
+              {/* lazy loading */}
+
+              <div id='transList'
+                                  style={{background: "red", "margin-bottom": "100px"}}
+
+                                          onScrollCapture={()=>alert("scroll")}>
+              {data
+                                        ? data.map((data, key) => (
+                                          
+                                          <div 
+                                           key={key}>
+                                                    {key <= 18 &&
+                                                          <div key={key} >
+                      
+                                                          <h1>{data.mission_name}</h1>
+                                                                
+                                                    </div>
+                                                    }
+                                                    
+                                                
+                                          </div>
+                                         
+                    
+                    )) 
+                    
+                  :null
+                    
+                 
+                    } 
+      </div>
       </div>
     )
   }
