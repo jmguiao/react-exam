@@ -135,7 +135,7 @@ this.onSearchFunc(input)
     const style = {
       width: '1000px',
       height: '500px',
-      "margin-top": '500px',
+      "margin-top": '300px',
       overflowY: 'auto'
     }
     // console.log(data);
