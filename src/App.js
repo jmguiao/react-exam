@@ -135,6 +135,7 @@ this.onSearchFunc(input)
     const style = {
       width: '1000px',
       height: '500px',
+      "margin-top": '500px',
       overflowY: 'auto'
     }
     // console.log(data);
@@ -153,7 +154,7 @@ this.onSearchFunc(input)
               <input
                   autoFocus
                   onChange={this.onSearch}
-                  
+                   
                   // className="bg-transparent text-white p-2.5 z-20 text-md  outline-0  "
                 
 
@@ -161,7 +162,8 @@ this.onSearchFunc(input)
                      {dataBySearch
                     ? dataBySearch.map((data, key) => (
           
-                  <div key={key} >
+                  <div
+                   key={key} >
                  
                       <span>{data.mission_name}</span>
                            
