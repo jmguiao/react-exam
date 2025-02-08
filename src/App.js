@@ -87,8 +87,13 @@ const sk = this.state.skipBy
         this.setState({skipBy:sk+18})
 
 
- 
+        const dataLength =  this.state.data.length
+        const skipBydata =  this.state.skipBy
+        dataLength <= skipBydata  && alert("no data to fetch")
+        // console.log(dataLength);
   }
+
+ 
 }
 
   onSearch(event) {
